@@ -28,7 +28,7 @@ export type Paginated<T> = {
  * @returns A page of cars plus pagination metadata
  */
 export async function getCars(params: GetCarsParams = {}): Promise<Paginated<Car>> {
-    const { sort, order = 'asc', page = 1, limit = 10, filters = {} } = params
+    const { sort, order = 'asc', page, limit, filters = {} } = params
 
     const query = new URLSearchParams()
 
@@ -42,8 +42,14 @@ export async function getCars(params: GetCarsParams = {}): Promise<Paginated<Car
         query.set('_sort', sort)
         query.set('_order', order)
     }
-    query.set('_page', String(page))
-    query.set('_limit', String(limit))
+    
+    if (page !== undefined) {
+        query.set('_page', String(page))
+    }
+
+    if (limit !== undefined) {
+        query.set('_limit', String(limit))
+    }
 
     const res = await fetch(`${API_BASE_URL}/cars?${query.toString()}`)
     if (!res.ok) {

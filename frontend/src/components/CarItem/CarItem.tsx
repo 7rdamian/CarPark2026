@@ -21,7 +21,9 @@ export function CarItem({ car }: Props) {
                 <div className="row"><div className="label">Model: </div>{car.model}</div>
                 <div className="row"><div className="label">Construction Year: </div>{car.constructionYear}</div>
                 <div className="row"><div className="label">Fuel type: </div>{car.fuelType}</div>
-                <div className="row"><div className="label">Engine size: </div>{car.engineSize}</div>
+                <div className="row"><div className="label">Mileage: </div>{car.mileage} km</div>
+                <div className="row"><div className="label">Engine size: </div>{car.engineSize} cm3</div>
+                <div className="row"><div className="label">Power: </div>{car.power} CP</div>
                 <br />
                 <div className="row">
                     <div className="label">

@@ -13,7 +13,7 @@ export function CarListProvider({ children }: PropsWithChildren) {
     const [isError, setIsError] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
 
-    const getCarList = useCallback(async () => {
+    const getCarList = async () => {
         setIsLoading(true)
         setIsError(false)
         try {
@@ -24,11 +24,11 @@ export function CarListProvider({ children }: PropsWithChildren) {
         } finally {
             setIsLoading(false)
         }
-    }, [])
+    }
 
     useEffect(() => {
         getCarList()
-    }, [getCarList])
+    }, [])
 
     const context = {
         carsList,
