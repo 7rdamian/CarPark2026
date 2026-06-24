@@ -10,9 +10,11 @@ import { useFilters } from "../hooks/useFilters";
 export function CarListProvider({ children }: PropsWithChildren) {
 
     const [carsList, setCarsList] = useState<Car[]>([])
-    const { filters, page, limit } = useFilters()
     const [isError, setIsError] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
+    const [total, setTotal] = useState<number | undefined>(undefined)
+    const [totalPages, setTotalPages] = useState<number | undefined>(undefined)
+    const { filters, page, limit } = useFilters()
 
     const getCarList = async () => {
         setIsLoading(true)
@@ -26,6 +28,8 @@ export function CarListProvider({ children }: PropsWithChildren) {
 
             const result = await getCars(params)
             setCarsList(result.items)
+            setTotal(result.total)
+            setTotalPages(result.totalPages)
         } catch {
             setIsError(true)
         } finally {
@@ -35,12 +39,14 @@ export function CarListProvider({ children }: PropsWithChildren) {
 
     useEffect(() => {
         getCarList()
-    }, [])
+    }, [filters.manufacturer, page, limit])
 
     const context = {
         carsList,
         isError,
-        isLoading
+        isLoading,
+        total,
+        totalPages,
     }
 
     return (

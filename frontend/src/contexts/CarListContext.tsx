@@ -5,6 +5,8 @@ type CarListContextType = {
     carsList: Car[];
     isError: boolean;
     isLoading: boolean;
+    total?: number;
+    totalPages?: number;
 }
 
 export const CarListContext = createContext<CarListContextType | undefined>(undefined)
