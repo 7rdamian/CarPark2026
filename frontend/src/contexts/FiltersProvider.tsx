@@ -11,6 +11,9 @@ const defaultFilters: Filters = {
 export function FiltersProvider({ children }: PropsWithChildren) {
     const [filters, setFilters] = useState<Filters>(defaultFilters)
 
+    const [page, setPage] = useState<number>(1)
+    const [limit, setLimit] = useState<number>(25)
+
     const updateFilter = (field: keyof Filters, value: string) => {
         setFilters(prev => ({ ...prev, [field]: value }))
     }
@@ -22,10 +25,10 @@ export function FiltersProvider({ children }: PropsWithChildren) {
         setFilters,
         updateFilter,
         resetFilters,
-        // page,
-        // setPage,
-        // limit,
-        // setLimit,
+        page,
+        setPage,
+        limit,
+        setLimit,
         // sort,
         // setSort,
         // order,

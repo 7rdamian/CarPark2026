@@ -6,6 +6,10 @@ export type Filters = {
 
 type FiltersContextType = {
     filters: Filters;
+    page: number;
+    setPage: React.Dispatch<React.SetStateAction<number>>;
+    limit: number;
+    setLimit: React.Dispatch<React.SetStateAction<number>>;
     setFilters: React.Dispatch<React.SetStateAction<Filters>>;
     updateFilter: (field: keyof Filters, value: string) => void;
     resetFilters: () => void;

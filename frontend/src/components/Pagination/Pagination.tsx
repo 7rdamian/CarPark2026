@@ -6,7 +6,7 @@ export function Pagination() {
 
     return (
         <div className="Pagination">
-            {/* <button
+            {<button
                 type="button"
                 className="Pagination__button"
                 onClick={() => {}}
@@ -26,14 +26,14 @@ export function Pagination() {
                 </button>
             ))}
 
-            <button
+            {<button
                 type="button"
                 className="Pagination__button"
                 onClick={() => {}}
                 disabled={true}
             >
                 Next
-            </button> */}
+            </button> }
         </div>
     )
 }
