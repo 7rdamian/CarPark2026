@@ -4,9 +4,17 @@ import { FiltersPanel } from "../FiltersPanel/FiltersPanel"
 import { SortingPanel } from "../SortingPanel/SortingPanel"
 import { useCarsList } from "../../hooks/useCarsList"
 import { Pagination } from "../Pagination/Pagination"
+import { useFilters } from "../../hooks/useFilters"
+import { useFavorites } from "../../hooks/useFavorites"
 
 export function Content() {
     const { carsList, isLoading, isError } = useCarsList()
+    const { showFavoritesOnly } = useFilters()
+    const { isFavorite } = useFavorites()
+
+    const visibleCarsList = showFavoritesOnly
+        ? carsList.filter((car) => isFavorite(car))
+        : carsList
 
     return (
         <div className="Content">
@@ -22,7 +30,7 @@ export function Content() {
 
                     <Pagination />
 
-                    {carsList.map((car) => (
+                    {visibleCarsList.map((car) => (
                         <CarItem key={car.vin} car={car} />
                     ))}
 
